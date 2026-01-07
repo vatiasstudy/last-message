@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Something I Wanted to Say Respectfully</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(180deg,#080808,#1a1a1a);
+    height:100vh;
+    overflow:hidden;
+    color:#eee;
+}
+
+/* 🌹😢 EMOJI RAIN */
+.fall{
+    position:fixed;
+    top:-40px;
+    font-size:22px;
+    opacity:0.55;
+    animation:fall linear infinite;
+    pointer-events:none;
+    z-index:1;
+}
+
+@keyframes fall{
+    to{ transform:translateY(110vh); }
+}
+
+/* PAGE WRAPPER */
+.container{
+    position:relative;
+    width:100%;
+    height:100%;
+    z-index:5;
+}
+
+/* PAGE */
+.page{
+    position:absolute;
+    top:0;
+    left:100%;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+    transition:transform 0.6s ease;
+}
+
+.page.active{
+    transform:translateX(-100%);
+}
+
+.page.prev{
+    transform:translateX(-200%);
+}
+
+/* CARD */
+.card{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(6px);
+    padding:40px 35px;
+    border-radius:22px;
+    max-width:520px;
+    width:90%;
+    text-align:center;
+    box-shadow:0 0 40px rgba(255,255,255,0.08);
+}
+
+h2{
+    font-weight:500;
+    margin-bottom:22px;
+}
+
+p{
+    font-size:16px;
+    line-height:1.9;
+    color:#ddd;
+}
+
+/* BUTTONS */
+.buttons{
+    margin-top:35px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+button{
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.6);
+    color:#fff;
+    padding:9px 24px;
+    border-radius:25px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:rgba(255,255,255,0.15);
+    transform:translateY(-1px);
+}
+
+.signature{
+    margin-top:30px;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🌹😢 EMOJI FALL -->
+<script>
+const emojis=["🌹","😢","😔","🌹"];
+for(let i=0;i<50;i++){
+    let e=document.createElement("div");
+    e.className="fall";
+    e.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+    e.style.left=Math.random()*100+"vw";
+    e.style.animationDuration=(5+Math.random()*6)+"s";
+    document.body.appendChild(e);
+}
+</script>
+
+<div class="container">
+
+<!-- PAGE 1 -->
+<div class="page active">
+<div class="card">
+<h2>😔 Something I Couldn’t Say</h2>
+<p>
+I couldn’t say this properly on messages.  
+There was always a fear that you might feel angry or uncomfortable 😔
+<br><br>
+That’s why I made this small gift —  
+to say everything calmly, clearly, and only once.
+</p>
+<div class="buttons">
+<span></span>
+<button onclick="next()">Next ➝</button>
+</div>
+</div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page">
+<div class="card">
+<h2>🌹 Just One Honest Truth</h2>
+<p>
+I only wanted to be your friend.  
+Nothing more than that.
+<br><br>
+No wrong intentions.  
+No hidden meaning.  
+Just care and respect 🌹
+</p>
+<div class="buttons">
+<button onclick="back()">⟵ Back</button>
+<button onclick="next()">Next ➝</button>
+</div>
+</div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page">
+<div class="card">
+<h2>🥀 I Understand</h2>
+<p>
+I understand how it feels  
+when a random guy keeps messaging  
+and it starts to feel uncomfortable 😢
+<br><br>
+I respect you, and I respect your feelings.  
+If anything I did crossed a line,  
+I’m genuinely sorry.
+</p>
+<div class="buttons">
+<button onclick="back()">⟵ Back</button>
+<button onclick="next()">Next ➝</button>
+</div>
+</div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page">
+<div class="card">
+<h2>🕊️ Respecting Your Space</h2>
+<p>
+I promise I won’t disturb you again.  
+I respect whatever you decide.
+<br><br>
+I just wanted things to be clear  
+from my side — peacefully and respectfully.
+</p>
+<div class="signature">— Vatsal</div>
+<div class="buttons">
+<button onclick="back()">⟵ Back</button>
+<span></span>
+</div>
+</div>
+</div>
+
+</div>
+
+<script>
+let current=0;
+const pages=document.querySelectorAll(".page");
+
+function update(){
+    pages.forEach((p,i)=>{
+        p.classList.remove("active","prev");
+        if(i===current) p.classList.add("active");
+        if(i<current) p.classList.add("prev");
+    });
+}
+
+function next(){
+    if(current<pages.length-1){
+        current++;
+        update();
+    }
+}
+
+function back(){
+    if(current>0){
+        current--;
+        update();
+    }
+}
+</script>
+
+</body>
+</html>
